@@ -1,0 +1,24 @@
+{
+  "name": "ws-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "npm run build && npm run start",
+    "start": "node --env-file=../../packages/prisma/.env dist/index.js"
+  },
+  "devDependencies": {
+    "@repo/prisma": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.23.13"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.21.3"
+  }
+}

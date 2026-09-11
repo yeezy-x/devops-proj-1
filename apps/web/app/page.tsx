@@ -1,8 +1,10 @@
 import { db } from "@repo/prisma";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
-  await db.connect()
   const users = await db.orm.public.User.all();
+
   return (
     <main>
       <h1>Users</h1>

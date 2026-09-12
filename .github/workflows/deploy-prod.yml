@@ -1,0 +1,26 @@
+name: Deploy PROD
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to PROD EC2
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ubuntu
+          key: ${{ secrets.PROD_SSH_KEY }}
+          script: |
+            cd ~/devops-proj-1
+            git pull origin prod
+            pnpm install
+            pnpm build
+            pm2 restart http-server
+            pm2 restart ws-server
+            pm2 restart web
